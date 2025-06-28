@@ -142,17 +142,21 @@ export default function EventsPage() {
 
                 {event.description && <p className="text-gray-600 mb-4">{event.description}</p>}
 
-                {/* Teaching Notes Section - Temporarily disabled until PDF is uploaded */}
+                {/* Teaching Notes Section */}
                 {event.hasTeachingNotes && (
-                  <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
                     <div className="flex items-center mb-2">
-                      <Download className="h-4 w-4 text-blue-600 mr-2" />
-                      <h4 className="font-semibold text-blue-800">Teaching Notes Coming Soon</h4>
+                      <Download className="h-4 w-4 text-green-600 mr-2" />
+                      <h4 className="font-semibold text-green-800">Free Teaching Notes Available</h4>
                     </div>
-                    <p className="text-sm text-blue-700 mb-3">{event.teachingTitle}</p>
-                    <p className="text-sm text-blue-600">
-                      Teaching notes will be available for download after the event.
-                    </p>
+                    <p className="text-sm text-green-700 mb-3">{event.teachingTitle}</p>
+                    <Link
+                      href="/teaching-notes/1-john-3-1-10"
+                      className="inline-flex items-center text-sm font-medium text-green-600 hover:text-green-800 transition-colors"
+                    >
+                      <Download className="h-3 w-3 mr-1" />
+                      View Teaching Notes
+                    </Link>
                   </div>
                 )}
 
