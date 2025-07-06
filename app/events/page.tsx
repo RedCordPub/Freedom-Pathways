@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Youtube, Calendar, Download } from "lucide-react"
+import { ArrowRight, Youtube, Calendar } from "lucide-react"
 import Image from "next/image"
 
 export default function EventsPage() {
@@ -25,9 +25,6 @@ export default function EventsPage() {
       description:
         "Contributing to the powerful 1 John teaching series 'A Love Letter from a Pastor' at River Church Family.",
       churchTheme: "RESTORING. REVIVING. RELEASING.",
-      hasTeachingNotes: true,
-      teachingNotesUrl: "/teaching-notes/1-john-3-1-10-teaching-notes.pdf",
-      teachingTitle: "1 John 3:1-10 - Children of God",
     },
     {
       title: "A Love Letter from a Pastor - 1 John Series",
@@ -141,24 +138,6 @@ export default function EventsPage() {
                 )}
 
                 {event.description && <p className="text-gray-600 mb-4">{event.description}</p>}
-
-                {/* Teaching Notes Section */}
-                {event.hasTeachingNotes && (
-                  <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                    <div className="flex items-center mb-2">
-                      <Download className="h-4 w-4 text-green-600 mr-2" />
-                      <h4 className="font-semibold text-green-800">Free Teaching Notes Available</h4>
-                    </div>
-                    <p className="text-sm text-green-700 mb-3">{event.teachingTitle}</p>
-                    <Link
-                      href="/teaching-notes/1-john-3-1-10"
-                      className="inline-flex items-center text-sm font-medium text-green-600 hover:text-green-800 transition-colors"
-                    >
-                      <Download className="h-3 w-3 mr-1" />
-                      View Teaching Notes
-                    </Link>
-                  </div>
-                )}
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   {event.isRecurring ? (
