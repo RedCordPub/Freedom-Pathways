@@ -1,226 +1,318 @@
-"use client"
-
 import Link from "next/link"
-import { ArrowRight, Users, BookOpen, MessageCircle, Calendar, ExternalLink } from 'lucide-react'
+import { ArrowRight, Youtube, Calendar } from "lucide-react"
+import Image from "next/image"
 
-export default function FreedomPathwaysPage() {
+export default function EventsPage() {
+  const upcomingEvents = [
+    {
+      title: "Inner Healing and Deliverance Workshop",
+      date: "14 June",
+      location: "Life Church",
+      address: "Middleboro, KY",
+      website: "https://lifechurchmboro.com/",
+      slug: "inner-healing-deliverance-workshop",
+      description:
+        "Join us for a powerful workshop on inner healing and deliverance ministry at Life Church Middleboro.",
+    },
+    {
+      title: "A Love Letter from a Pastor - 1 John Series",
+      date: "29 June",
+      location: "River Church Family",
+      address: "Guest Speaker",
+      website: "https://www.rivercentral.org/",
+      seriesUrl: "https://www.rivercentral.org/recent-teachings-all/a-love-letter-from-a-pastor-i-john",
+      slug: "river-church-june-29",
+      description:
+        "Contributing to the powerful 1 John teaching series 'A Love Letter from a Pastor' at River Church Family.",
+      churchTheme: "RESTORING. REVIVING. RELEASING.",
+    },
+    {
+      title: "A Love Letter from a Pastor - 1 John Series",
+      date: "20 July",
+      location: "River Church Family",
+      address: "Guest Speaker",
+      website: "https://www.rivercentral.org/",
+      seriesUrl: "https://www.rivercentral.org/recent-teachings-all/a-love-letter-from-a-pastor-i-john",
+      slug: "river-church-july-20",
+      description: "Continuing the 1 John teaching series 'A Love Letter from a Pastor' at River Church Family.",
+      churchTheme: "RESTORING. REVIVING. RELEASING.",
+    },
+    {
+      title: "Fuel Up Fridays",
+      date: "Every Friday",
+      location: "YouTube Channel",
+      address: "Online - @persellcody",
+      website: "https://www.youtube.com/@persellcody",
+      slug: "fuel-up-fridays",
+      description:
+        "Weekly encouragement and spiritual warfare insights to fuel your faith and prepare you for victory.",
+      isRecurring: true,
+    },
+  ]
+
+  const pastEvents = [
+    {
+      title: "Foursquare Leader Conference 2024",
+      subtitle: "FLC 2024 Workshop",
+      date: "October 4th",
+      time: "10AM-12PM",
+      location: "Foursquare Conference",
+      description: "Establishing Supernatural Ministries in the Local Church that do not quench or grieve Holy Spirit",
+    },
+    {
+      title: "The InGathering 3",
+      subtitle: "Preaching",
+      date: "October 22nd",
+      time: "7PM",
+      location: "InGathering Conference",
+      description: "Time for the Ecclesia to be the Ecclesia!",
+    },
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 text-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Freedom Pathways</h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">Inner Healing & Deliverance Community</p>
-            <p className="text-lg mb-12 text-blue-200 max-w-3xl mx-auto">
-              Join a supportive community of believers walking together on the journey of inner healing, deliverance,
-              and spiritual freedom through Christ.
-            </p>
+          <h1 className="text-5xl font-bold mb-6">Upcoming Events</h1>
+          <p className="text-xl mb-8 max-w-2xl text-gray-700">
+            Join us for transformative gatherings, workshops, and weekly encouragement designed to strengthen your faith
+            and build community.
+          </p>
+        </div>
+      </section>
 
-            {/* Main CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="https://nas.io/together-in-battle/home"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 font-bold text-lg rounded-lg hover:bg-blue-50 transition-colors shadow-lg"
-              >
-                <Users className="h-6 w-6 mr-3" />
-                Join the Community
-                <ExternalLink className="h-4 w-4 ml-2" />
-              </Link>
-              <Link
-                href="#about"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-blue-900 transition-colors"
-              >
-                Learn More
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Link>
-            </div>
+      {/* Events List */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold">All Events</h2>
+            <Link href="/events/calendar" className="inline-flex items-center text-base font-medium">
+              VIEW CALENDAR <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {upcomingEvents.map((event, index) => (
+              <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
+                    <p className="text-xl mb-4 text-[#0F3543] font-semibold">{event.date}</p>
+                  </div>
+                  {event.isRecurring && (
+                    <div className="flex items-center text-red-600 ml-4">
+                      <Youtube className="h-6 w-6" />
+                    </div>
+                  )}
+                  {!event.isRecurring && (
+                    <div className="flex items-center text-[#0F3543] ml-4">
+                      <Calendar className="h-6 w-6" />
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex items-start mb-4">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-5 h-5 mr-2 mt-0.5 text-gray-500 flex-shrink-0"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <div>
+                    <div className="font-medium">{event.location}</div>
+                    <div className="text-sm text-gray-500">{event.address}</div>
+                  </div>
+                </div>
+
+                {event.churchTheme && (
+                  <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-teal-50 rounded-lg border-l-4 border-blue-400">
+                    <p className="text-sm font-medium text-blue-800 italic">"{event.churchTheme}"</p>
+                  </div>
+                )}
+
+                {event.description && <p className="text-gray-600 mb-4">{event.description}</p>}
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {event.isRecurring ? (
+                    <Link
+                      href={event.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-6 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+                    >
+                      <Youtube className="h-4 w-4 mr-2" />
+                      Watch on YouTube
+                    </Link>
+                  ) : (
+                    <>
+                      <Link
+                        href={event.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-2 bg-[#0F3543] text-white font-medium rounded-md hover:bg-opacity-90 transition-colors"
+                      >
+                        Visit Church Website
+                      </Link>
+                      {event.seriesUrl && (
+                        <Link
+                          href={event.seriesUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block px-6 py-2 border border-blue-400 text-blue-600 font-medium rounded-md hover:bg-blue-50 transition-colors"
+                        >
+                          View Teaching Series
+                        </Link>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Community Preview Section */}
+      {/* River Church Family Spotlight */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-6">Join Our Thriving Community</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Connect with fellow believers, access exclusive resources, and grow together in your journey of freedom.
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Featured Partnership</h2>
+              <p className="text-lg text-gray-600">
+                Excited to be contributing to the powerful teaching series at River Church Family
               </p>
             </div>
 
-            {/* Embedded Community Preview */}
-            <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-              <div className="aspect-video bg-gradient-to-br from-blue-100 to-teal-100 rounded-lg flex items-center justify-center mb-6">
-                <div className="text-center">
-                  <Users className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Together in Battle Community</h3>
-                  <p className="text-gray-600 mb-6">Experience our community platform powered by Nas.io</p>
+            <div className="bg-gradient-to-r from-blue-900 to-teal-800 rounded-lg overflow-hidden shadow-lg">
+              <div className="relative h-64">
+                <Image
+                  src="/images/river-church-family-website.jpg"
+                  alt="River Church Family - Restoring, Reviving, Releasing"
+                  fill
+                  className="object-cover opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-teal-800/70"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <h3 className="text-4xl font-bold mb-2">RESTORING. REVIVING. RELEASING.</h3>
+                    <p className="text-xl">River Church Family</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 bg-white">
+                <h4 className="text-xl font-bold mb-3">A Love Letter from a Pastor - 1 John Series</h4>
+                <p className="text-gray-600 mb-4">
+                  Join us for this powerful teaching series through the book of 1 John. Cody Persell will be
+                  contributing to this series on June 29th and July 20th, bringing insights on spiritual warfare and
+                  walking in freedom through Christ.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Link
-                    href="https://nas.io/together-in-battle/home"
+                    href="https://www.rivercentral.org/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
                   >
-                    Visit Community
-                    <ExternalLink className="h-4 w-4 ml-2" />
+                    Visit River Church
+                  </Link>
+                  <Link
+                    href="https://www.rivercentral.org/recent-teachings-all/a-love-letter-from-a-pastor-i-john"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-2 border border-blue-600 text-blue-600 font-medium rounded-md hover:bg-blue-50 transition-colors"
+                  >
+                    View Teaching Series
                   </Link>
                 </div>
               </div>
-
-              <div className="text-center">
-                <p className="text-sm text-gray-500 mb-4">
-                  Powered by <strong>Nas.io</strong> - A secure, private community platform
-                </p>
-              </div>
-            </div>
-
-            {/* Community Features */}
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-6 bg-blue-50 rounded-lg">
-                <MessageCircle className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Discussion Forums</h3>
-                <p className="text-gray-600">
-                  Engage in meaningful conversations about inner healing, deliverance, and spiritual growth.
-                </p>
-              </div>
-
-              <div className="text-center p-6 bg-green-50 rounded-lg">
-                <BookOpen className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Exclusive Resources</h3>
-                <p className="text-gray-600">
-                  Access teaching materials, prayer guides, and resources available only to community members.
-                </p>
-              </div>
-
-              <div className="text-center p-6 bg-purple-50 rounded-lg">
-                <Calendar className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Live Events</h3>
-                <p className="text-gray-600">
-                  Join live Q&A sessions, prayer meetings, and exclusive community events.
-                </p>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-16 bg-gray-50">
+      {/* Past Events */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold mb-6">What is Freedom Pathways?</h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Freedom Pathways is more than just a community—it's a safe space where believers can:
-                </p>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    Share testimonies and breakthrough stories
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    Ask questions and receive biblical guidance
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    Access exclusive teaching content and resources
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    Connect with others on similar journeys
-                  </li>
-                  <li className="flex items-start">
-                    <ArrowRight className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    Participate in live prayer and ministry sessions
-                  </li>
-                </ul>
-              </div>
+          <h2 className="text-3xl font-bold mb-8">Past Events</h2>
 
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4 text-center">Ready to Begin?</h3>
-                <p className="text-gray-600 mb-6 text-center">
-                  Join hundreds of believers already walking in greater freedom through Christ.
-                </p>
-                <Link
-                  href="https://nas.io/together-in-battle/home"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center px-6 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-bold rounded-lg hover:from-blue-700 hover:to-teal-700 transition-colors"
-                >
-                  Join Freedom Pathways Community
-                </Link>
-                <p className="text-sm text-gray-500 text-center mt-3">
-                  Free to join • Secure & Private • Biblical Foundation
-                </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {pastEvents.map((event, index) => (
+              <div key={index} className="p-6 border border-gray-200 rounded-lg bg-white">
+                <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
+                <div className="text-lg font-medium text-gray-800 mb-2">{event.subtitle}</div>
+                <div className="flex items-center text-gray-600 mb-2">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" x2="16" y1="2" y2="6" />
+                    <line x1="8" x2="8" y1="2" y2="6" />
+                    <line x1="3" x2="21" y1="10" y2="10" />
+                  </svg>
+                  <span>
+                    {event.date} • {event.time}
+                  </span>
+                </div>
+                <div className="flex items-center text-gray-600 mb-3">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4 mr-2"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <span>{event.location}</span>
+                </div>
+                <p className="text-gray-600 text-sm">{event.description}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Subscribe */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-12">Community Impact</h2>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p className="text-gray-700 italic mb-4">
-                  "This community has been a lifeline for me. The support and biblical guidance I've received has helped
-                  me walk in freedom I never thought possible."
-                </p>
-                <p className="font-semibold text-blue-800">- Community Member</p>
-              </div>
-
-              <div className="bg-green-50 p-6 rounded-lg">
-                <p className="text-gray-700 italic mb-4">
-                  "The resources and live sessions have equipped me not just for my own healing, but to help others in
-                  their journey toward freedom in Christ."
-                </p>
-                <p className="font-semibold text-green-800">- Community Member</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-teal-800 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Your Freedom Journey Starts Here</h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Don't walk this path alone. Join a community that understands your journey and will support you every step
-            of the way.
+          <h2 className="text-3xl font-bold mb-6">Stay Updated</h2>
+          <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-700">
+            Don't miss out on upcoming workshops, speaking engagements, and weekly Fuel Up Friday encouragement.
+            Subscribe to stay connected.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://nas.io/together-in-battle/home"
+              href="https://www.youtube.com/@persellcody"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 font-bold text-lg rounded-lg hover:bg-blue-50 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 transition-colors"
             >
-              <Users className="h-6 w-6 mr-3" />
-              Join Now - It's Free
-              <ExternalLink className="h-4 w-4 ml-2" />
+              <Youtube className="h-5 w-5 mr-2" />
+              Subscribe to YouTube
             </Link>
-
             <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-blue-900 transition-colors"
+              href="/newsletter"
+              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-900 font-medium rounded-md hover:bg-gray-50 transition-colors"
             >
-              Have Questions?
+              Join Mailing List
             </Link>
           </div>
-
-          <p className="text-sm text-blue-200 mt-6">Secure community platform powered by Nas.io</p>
         </div>
       </section>
     </div>
