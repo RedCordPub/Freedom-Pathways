@@ -1,2 +1,2 @@
-# Freedom-Pathways
+# Freedom-Pathways 
 Inner Healing and Deliverance Curriculum
